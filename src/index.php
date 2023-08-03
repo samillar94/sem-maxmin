@@ -5,7 +5,7 @@ require('functions.inc.php');
 
 $output = array(
 	"error" => false,
-  "items" => "",
+  	"items" => "",
 	"attendance" => 0,
 	"max_item" => "",
 	"min_item" => ""
