@@ -8,7 +8,8 @@ $output = array(
   	"items" => "",
 	"attendance" => 0,
 	"max_item" => "",
-	"min_item" => ""
+	"min_item" => "",
+	"message" => ""
 );
 
 $item_1 = $_REQUEST['item_1'];
