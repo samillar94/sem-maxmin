@@ -1,0 +1,9 @@
+image: php
+stages:
+  - test
+
+test:
+  stage: test
+  script:
+    - cd src
+    - php functionsTest.php
