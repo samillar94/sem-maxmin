@@ -12,7 +12,7 @@ $attendance_arrays = array(
 $outputs_expected = array(
     array("Support sessions - 4", "Lecture sessions - 1"),
     array("Lab sessions - 22", "Canvas activities - 0")
-)
+);
 
 
 echo "Testing sort function";
@@ -37,7 +37,7 @@ for($i=0; $i<sizeof($attendance_arrays); $i++)
         echo "FAILED\n";
         $failedcount++;
     }
-}
+};
 
 echo "Performed ".$testcount." test with ".$passedcount." passed and ".$failedcount." failed.\n";
 
