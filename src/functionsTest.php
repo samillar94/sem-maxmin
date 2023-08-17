@@ -25,7 +25,7 @@ for($i=0; $i<sizeof($attendance_arrays); $i++)
 {
     $output_expected = $outputs_expected[$i];
     $testcount++;
-    $output = getSortedAttendance($items, $attendance_arrays[$i]);
+    $output = getMaxMin($items, $attendance_arrays[$i]);
     echo "Testing input: \n".$attendance_arrays[$i]."\n\nExpected output: \n".$output_expected."\n\nFound: \n".$output."\n\n";
     if ($output_expected == $output)
     {
