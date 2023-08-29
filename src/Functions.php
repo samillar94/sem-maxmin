@@ -93,13 +93,13 @@ class Functions {
 
       for ($index = 0; $index < $count; $index++) {
 
-        if ($index == 0 || $extractedData[$index] == $extractedData[$index-1]) {
+        if ($index == 0 || $extractedData[$index]['attendance'] == $extractedData[$index-1]['attendance']) {
           $item = $extractedData[$index]['item'];
           $attendance = $extractedData[$index]['attendance'];
           $unit = $extractedData[$index]['unit'];          
           $maxes[] = $extractedData[$index];
           $maxLines[] = '- '.$item.': '.round($attendance).' '.$unit;
-        } else if ($extractedData[$index] < $extractedData[$index-1]) {
+        } else if ($extractedData[$index]['attendance'] < $extractedData[$index-1]['attendance']) {
           break;
         } else {
           throw new \Exception("Data must be sorted");
@@ -109,13 +109,13 @@ class Functions {
 
       for ($index = $count-1; $index >= 0; $index--) {
 
-        if ($index == $count-1 || $extractedData[$index] == $extractedData[$index+1]) {
+        if ($index == $count-1 || $extractedData[$index]['attendance'] == $extractedData[$index+1]['attendance']) {
           $item = $extractedData[$index]['item'];
           $attendance = $extractedData[$index]['attendance'];
           $unit = $extractedData[$index]['unit'];          
           $mins[] = $extractedData[$index];
           $minLines[] = '- '.$item.': '.round($attendance).' '.$unit;
-        } else if ($extractedData[$index] > $extractedData[$index+1]) {
+        } else if ($extractedData[$index]['attendance'] > $extractedData[$index+1]['attendance']) {
           break;
         } else {
           throw new \Exception("Data must be sorted");
