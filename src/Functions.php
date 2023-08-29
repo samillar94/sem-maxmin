@@ -80,7 +80,7 @@ class Functions {
       ## clone array
       $count = count($extractedData);
 
-      if ($extractedData[$count-1] > $extractedData[0]) {
+      if ($extractedData[$count-1]['attendace'] > $extractedData[0]['attendace']) {
         throw new \Exception("Data must be sorted in descending order");
       };
 
@@ -126,21 +126,27 @@ class Functions {
       $results['data']['max_attendances'] = $maxes;
       $results['data']['min_attendances'] = array_reverse($mins);
 
-      $maxLineHead += (count($maxLines)>1) ? "s:" : ":";
-      $minLineHead += (count($minLines)>1) ? "s:" : ":";
+      if (count($maxLines) == $count) {
+        $results['lines'][] = 'All attendances equal';
+      } else {
 
-      $results['lines'][] = $maxLineHead;
+        $maxLineHead += (count($maxLines)>1) ? "s:" : ":";
+        $minLineHead += (count($minLines)>1) ? "s:" : ":";
 
-      foreach ($maxLines as $line) {
-        $results['lines'][] = $line;
-      }
+        $results['lines'][] = $maxLineHead;
 
-      $results['lines'][] = $minLineHead;
+        foreach ($maxLines as $line) {
+          $results['lines'][] = $line;
+        }
 
-      $minLines = array_reverse($minLines);
+        $results['lines'][] = $minLineHead;
 
-      foreach ($minLines as $line) {
-        $results['lines'][] = $line;
+        $minLines = array_reverse($minLines);
+
+        foreach ($minLines as $line) {
+          $results['lines'][] = $line;
+        }
+
       }
 
     } catch (Exception $e) {
