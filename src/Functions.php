@@ -88,7 +88,7 @@ class Functions {
       $maxLineHead = "Maximum attendance";
       $maxLines = [];
       $mins = [];
-      $minHead = "Minimum attendace";
+      $minLineHead = "Minimum attendace";
       $minLines = [];
 
       for ($index = 0; $index < $count; $index++) {
