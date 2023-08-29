@@ -362,7 +362,7 @@ class FunctionsTest extends TestCase {
                     "data" => array(
                         "max_attendances" => [                 
                             0 => array(
-                                'item' => "Lab",
+                                'item' => "Labs",
                                 'attendance' => 22.5,
                                 'unit' => "h"
                             ),
@@ -382,7 +382,7 @@ class FunctionsTest extends TestCase {
                     ),
                     "lines" => [
                         0 => 'Maximum attendance:',
-                        1 => '- Lab: 23 h',
+                        1 => '- Labs: 23 h',
                         2 => '- Canvas: 23 h',
                         3 => 'Minimum attendance:',
                         4 => '- Support: 0 h',
@@ -401,7 +401,7 @@ class FunctionsTest extends TestCase {
 
         $actual = $functions->extractData($inputArray);
         echo print_r($actual, true);
-        $this->assertEqualsCanonicalizing($expectedArray, $actual);
+        $this->assertEquals($expectedArray, $actual);
 
     }
 
@@ -426,7 +426,7 @@ class FunctionsTest extends TestCase {
 
         $actual = $functions->BuildResults($inputArray);
         echo print_r($actual, true);
-        $this->assertEqualsCanonicalizing($expectedArray, $actual);
+        $this->assertEquals($expectedArray, $actual);
 
     }
 };
