@@ -381,7 +381,7 @@ class FunctionsTest extends TestCase {
                         ],
                     ),
                     "lines" => [
-                        0 => 'Maximum attendance:',
+                        0 => 'Maximum attendances:',
                         1 => '- Labs: 23 h',
                         2 => '- Canvas: 23 h',
                         3 => 'Minimum attendance:',
