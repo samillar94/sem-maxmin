@@ -80,7 +80,7 @@ class Functions {
       ## clone array
       $count = count($extractedData);
 
-      if ($extractedData[$count-1]['attendace'] > $extractedData[0]['attendace']) {
+      if ($extractedData[$count-1]['attendance'] > $extractedData[0]['attendance']) {
         throw new \Exception("Data must be sorted in descending order");
       };
 
