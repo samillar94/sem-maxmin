@@ -373,7 +373,7 @@ class FunctionsTest extends TestCase {
                             ),
                         ],
                         "min_attendances" => [
-                            2 => array(
+                            0 => array(
                                 'item' => "Support",
                                 'attendance' => 0,
                                 'unit' => "h"
