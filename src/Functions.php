@@ -130,8 +130,8 @@ class Functions {
         $results['lines'][] = 'All attendances equal';
       } else {
 
-        $maxLineHead += (count($maxLines)>1) ? "s:" : ":";
-        $minLineHead += (count($minLines)>1) ? "s:" : ":";
+        $maxLineHead = $maxLineHead.((count($maxLines)>1) ? "s:" : ":");
+        $minLineHead = $minLineHead.((count($minLines)>1) ? "s:" : ":");
 
         $results['lines'][] = $maxLineHead;
 
