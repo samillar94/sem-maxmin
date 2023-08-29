@@ -1,35 +1,37 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Content-type: application/json");
-require('functions.inc.php');
+require 'src/Functions.php';
+use App\Functions;
+$proxy = json_decode(file_get_contents('proxyregistry.json'), true);
 
-$output = array(
-	"error" => false,
-  	"items" => "",
-	"attendance" => 0,
-	"max_item" => "",
-	"min_item" => "",
-	"message" => ""
-);
+/// Register on startup
+$postData = json_encode(["name" => "maxmin", "healthy" => true]);
+$ch = curl_init($proxy['uris'][0]); /// TODO cycle through
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$response = curl_exec($ch);
+curl_close($ch);
 
-$item_1 = $_REQUEST['item_1'];
-$item_2 = $_REQUEST['item_2'];
-$item_3 = $_REQUEST['item_3'];
-$item_4 = $_REQUEST['item_4'];
-$attendance_1 = $_REQUEST['attendance_1'];
-$attendance_2 = $_REQUEST['attendance_2'];
-$attendance_3 = $_REQUEST['attendance_3'];
-$attendance_4 = $_REQUEST['attendance_4'];
+/// Respond to HTTP GET requests
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-$items = array($item_1,$item_2,$item_3,$item_4);
-$attendances = array($attendance_1,$attendance_2,$attendance_3,$attendance_4);
+	header("Access-Control-Allow-Origin: *");
+    header('Content-Type: application/json');
 
-$max_min_items=getMaxMin($items, $attendances);
+	$results = array(
+		"error"=> true
+	);
 
-$output['items']=$items;
-$output['attendance']=$attendances;
-$output['max_item']=$max_min_items[0];
-$output['min_item']=$max_min_items[1];
+	$functions = new Functions();
 
-echo json_encode($output);
-exit();
+	try {
+		$extractedData = $functions->extractData($_REQUEST);
+		$results = $functions->buildResults($extractedData);
+	} catch (Exception $e) {
+		$results['message'] = "A function threw an exception: {$e}";
+	}
+
+	echo json_encode($results);
+
+};
+?>
