@@ -207,6 +207,128 @@ class FunctionsTest extends TestCase {
         ];
     }
 
+    public function provideExtractDataNonNumeric() {
+        return [
+            array(
+                array(
+                    'item_1' => "Lectures",
+                    'item_2' => "Labs",
+                    'item_3' => "Support",
+                    'item_4' => "Canvas",                
+                    'attendance_1' => "fifty",
+                    'attendance_2' => 10,
+                    'attendance_3' => 1,
+                    'attendance_4' => 0,
+                    'unit_1' => "h",
+                    'unit_2' => "h",
+                    'unit_3' => "h",
+                    'unit_4' => "h",
+                )
+            ),
+            array(
+                array(
+                    'item_1' => "Lectures",
+                    'item_2' => "Labs",
+                    'item_3' => "Support",
+                    'item_4' => "Canvas",                
+                    'attendance_1' => 55,
+                    'attendance_2' => "1.2.1",
+                    'attendance_3' => 1,
+                    'attendance_4' => 0,
+                    'unit_1' => "h",
+                    'unit_2' => "h",
+                    'unit_3' => "h",
+                    'unit_4' => "h",
+                )
+            ),
+            array(
+                array(
+                    'item_1' => "Lectures",
+                    'item_2' => "Labs",
+                    'item_3' => "Support",
+                    'item_4' => "Canvas",                
+                    'attendance_1' => 55,
+                    'attendance_2' => 10,
+                    'attendance_3' => 1,
+                    'attendance_4' => "",
+                    'unit_1' => "h",
+                    'unit_2' => "h",
+                    'unit_3' => "h",
+                    'unit_4' => "h",
+                )
+            ),
+        ];
+    }
+
+    public function provideExtractDataNegative() {
+        return [
+            array(
+                array(
+                    'item_1' => "Lectures",
+                    'item_2' => "Labs",
+                    'item_3' => "Support",
+                    'item_4' => "Canvas",                
+                    'attendance_1' => -50,
+                    'attendance_2' => 10,
+                    'attendance_3' => 1,
+                    'attendance_4' => 0,
+                    'unit_1' => "h",
+                    'unit_2' => "h",
+                    'unit_3' => "h",
+                    'unit_4' => "h",
+                )
+            ),
+            array(
+                array(
+                    'item_1' => "Lectures",
+                    'item_2' => "Labs",
+                    'item_3' => "Support",
+                    'item_4' => "Canvas",                
+                    'attendance_1' => 55,
+                    'attendance_2' => -8,
+                    'attendance_3' => 1,
+                    'attendance_4' => 0,
+                    'unit_1' => "h",
+                    'unit_2' => "h",
+                    'unit_3' => "h",
+                    'unit_4' => "h",
+                )
+            ),
+            array(
+                array(
+                    'item_1' => "Lectures",
+                    'item_2' => "Labs",
+                    'item_3' => "Support",
+                    'item_4' => "Canvas",                
+                    'attendance_1' => 55,
+                    'attendance_2' => 10,
+                    'attendance_3' => -1,
+                    'attendance_4' => 0,
+                    'unit_1' => "h",
+                    'unit_2' => "h",
+                    'unit_3' => "h",
+                    'unit_4' => "h",
+                )
+            ),
+            array(
+                array(
+                    'item_1' => "Lectures",
+                    'item_2' => "Labs",
+                    'item_3' => "Support",
+                    'item_4' => "Canvas",                
+                    'attendance_1' => 55,
+                    'attendance_2' => 10,
+                    'attendance_3' => 1,
+                    'attendance_4' => -85,
+                    'unit_1' => "h",
+                    'unit_2' => "h",
+                    'unit_3' => "h",
+                    'unit_4' => "h",
+                )
+            ),
+        ];
+    }
+
     public function provideBuildResultsValid() {
         return [
             [
@@ -409,6 +531,30 @@ class FunctionsTest extends TestCase {
      * @dataProvider provideExtractDataDiffCounts
      */
     public function testExtractDataDiffCounts($inputArray) {
+
+        $functions = new Functions();
+
+        $this->expectException(\Exception::class);
+        $actual = $functions->extractData($inputArray);
+
+    }
+
+    /**
+     * @dataProvider provideExtractDataNonNumeric
+     */
+    public function testExtractDataNonNumeric($inputArray) {
+
+        $functions = new Functions();
+
+        $this->expectException(\Exception::class);
+        $actual = $functions->extractData($inputArray);
+
+    }
+
+    /**
+     * @dataProvider provideExtractDataNegative
+     */
+    public function testExtractDataNegative($inputArray) {
 
         $functions = new Functions();
 
