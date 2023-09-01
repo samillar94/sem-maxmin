@@ -28,7 +28,7 @@ class Functions {
 
       $attFloat = floatval($att);
 
-      if (is_nan($attFloat)) {
+      if ($attFloat === 0.0 && !($att === "0" || $att === "0.0")) {
           throw new \Exception("Non-numerical/blank attendance");
       };
 
